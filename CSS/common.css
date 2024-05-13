@@ -15,7 +15,7 @@ header {
   height: fit-content;
   /* width: fit-content; */
   color: white;
-  background-image: url(Images/header.png);
+  background-image: url(/Images/header.png);
   background-size: cover;
   background-position: center;
   /* background-repeat: no-repeat; */
