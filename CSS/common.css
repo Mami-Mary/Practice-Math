@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@400;700&display=swap');
+
+html, body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-family: Roboto;
+  font-weight: 400;
+  color: gray;
+}
+
+header {
+  height: fit-content;
+  /* width: fit-content; */
+  color: white;
+  background-image: url(/Images/header.png);
+  background-size: cover;
+  background-position: center;
+  /* background-repeat: no-repeat; */
+  padding: 30px;
+}
+
+svg {
+  width: 10%;
+}
+
+h1 {
+  font-family: Ubuntu;
+  font-weight: 700;
+  font-size: 4rem;
+  margin-top: 0%;
+  margin-bottom: 0%;
+}
+
+h3 {
+  font-family: Ubuntu;
+  font-weight: 700;
+  /* margin-top: 0%; */
+}
+
+nav li{
+  display: inline-block;
+}
+
+/* ul {
+  margin: 0%;
+} */
+li {
+  list-style: none;
+  margin: 0px 15px 0px 15px;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header a:hover {
+  color: rgb(42, 54, 84);
+}
+
+main {
+  padding: 30px;
+}
+
+button {
+  border: none;
+  border-radius: 1.5rem;
+  background-color: #c5c962;
+  width: 25rem;
+  height: 100px;
+  margin: 0px 30px;
+  font-size: 1.5rem;
+  font-family: Ubuntu;
+  font-weight: 700;
+  color: white;
+}
+
+button:hover {
+  background-color: #5C8ECB;
+  color: white;
+}
+
+footer {
+  margin-top: 50px;
+}

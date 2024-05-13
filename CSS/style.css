@@ -1,0 +1,51 @@
+/* For index.html */
+#quickStart {
+  margin-top: 50px;
+}
+
+#quickStart > :first-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* For level.index */
+#levels {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#levels div {
+  width: 150px;
+  height: 150px;
+  background-color: #5C8ECB;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem;
+  padding: 3rem;
+}
+
+/* For ramdom.html */
+
+/* For test.html */
+#test {
+  margin-top: 3rem;
+}
+
+#option {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* For mistake.html */
+
+/* For log.html */
