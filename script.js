@@ -1,272 +1,187 @@
-let int1 = 0
-let int2 = 0
-let float1 = 0
-let float2 = 0
-let float2Decimal1 = 0
-let float2Decimal2 = 0
-let fraction = 0
-
-// Create ramdom number
-function randomNumber()
-{
-  int1 = Math.floor(Math.random() * 100)
-  int2 = Math.floor(Math.random() * 10)
-  const min1 = 0.1
-  const max1 = 99.9
-  const random1 = Math.random() * (max1 - min1) + min1
-  float1 = random1.toFixed(1)
-  const random2 = Math.random() * (max1 - min1) + min1
-  float2 = random2.toFixed(1)
-  const min2 = 0.11
-  const max2 = 99.99
-  const random3 = Math.random() * (max2 - min2) + min2
-  float2Decimal1 = random3.toFixed(2)
-  const random4 = Math.random() * (max2 - min2) + min2
-  float2Decimal2 = random4.toFixed(2)
-
-  const numerator = Math.floor(Math.random() * 10)
-  let denominator = Math.floor(Math.random() * 10)
-  if (denominator === 0)
-  {
-    denominator = 1
-  }
-  fraction = numerator + '/' + denominator
-
-  return [int1, int2, float1, float2, float2Decimal1, float2Decimal2, fraction]
-}
-// randomNumber()
-// console.log(int1 + '¥' + int2 + '¥'+ float1 + '¥' + float2 + '¥' + float2Decimal1 + '¥' + float2Decimal2 + '¥' + fraction)
-
-// Addition
-// let int1 = 0
-// let int2 = 0
 let question = ''
 let answer = 0
 const questionList = []
-const correctAnswerList = []
+const answerList = []
+let questionType
 
-function additionProblems()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = int1 + ' + ' + int2
-    questionList.push(question)
+// create a problems 
+function CreateProblems(questionType) {
+  for (let i = 0; i <= 30; i++) {
+    let num1
+    let num2
+    let min
+    let max
+    let random1
+    let random2
+    let preAnswer
 
-    answer = int1 + int2
-    correctAnswerList.push(answer)
-  }
-}
-
-// TEST
-additionProblems()
-for (let i = 0; i < questionList.length; i++)
-{
-  console.log('Question' + (i+1) + ': ' + questionList[i])
-  console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-}
-
-// Subtraction
-function subtractionProblems()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = int1 + ' - ' + int2
-    questionList.push(question)
-
-    answer = int1 - int2
-    correctAnswerList.push(answer)
-  }
-}
-
-// TEST
-subtractionProblems()
-{
-  for (let i = 0; i < questionList.length; i++)
-  {
-    console.log('Question' + (i+1) + ': ' + questionList[i])
-    console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-  }
-}
-
-function additionWithOneDicimal()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = float1 + ' + ' + float2
-    questionList.push(question)
-  
-    answer = parseFloat(float1) + parseFloat(float2)
-    correctAnswerList.push(answer.toFixed(1))
-  }
-}
-// TEST
-additionWithOneDicimal()
-{
-  for (let i = 0; i < questionList.length; i++)
-  {
-    console.log('Question' + (i+1) + ': ' + questionList[i])
-    console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-  }
-}
-
-function subtractionWithOneDicimal()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = float1 + ' - ' + float2
-    questionList.push(question)
-  
-    answer = parseFloat(float1) - parseFloat(float2)
-    correctAnswerList.push(answer.toFixed(1))
-  }
-}
-// TEST
-subtractionWithOneDicimal()
-{
-  for (let i = 0; i < questionList.length; i++)
-  {
-    console.log('Question' + (i+1) + ': ' + questionList[i])
-    console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-  }
-}
-
-function additionWithTwoDicimal()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = float2Decimal1 + ' + ' + float2Decimal2
-    questionList.push(question)
-  
-    answer = parseFloat(float2Decimal1) + parseFloat(float2Decimal2)
-    correctAnswerList.push(answer.toFixed(2))
-  }
-}
-// TEST
-additionWithTwoDicimal()
-{
-  for (let i = 0; i < questionList.length; i++)
-  {
-    console.log('Question' + (i+1) + ': ' + questionList[i])
-    console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-  }
-}
-
-function subtractionWithTwoDicimal()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = float2Decimal1 + ' - ' + float2Decimal2
-    questionList.push(question)
-  
-    answer = parseFloat(float2Decimal1) - parseFloat(float2Decimal2)
-    correctAnswerList.push(answer.toFixed(2))
-  }
-}
-// TEST
-subtractionWithTwoDicimal()
-{
-  for (let i = 0; i < questionList.length; i++)
-  {
-    console.log('Question' + (i+1) + ': ' + questionList[i])
-    console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-  }
-}
-
-function multiplication()
-{
-  for (let i = 0; i < 30; i++)
-  {
-    randomNumber()
-    question = int1 + ' * ' + int2
-    questionList.push(question)
-
-    answer = int1 * int2
-    correctAnswerList.push(answer)
-  }
-}
-// TEST
-multiplication()
-for (let i = 0; i < questionList.length; i++)
-{
-  console.log('Question' + (i+1) + ': ' + questionList[i])
-  console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-}
-
-function division()
-{
-  for (let i = 0; i < 30; )
-  {
-    randomNumber()
-    question = int1 + ' / ' + int2
-    if (int1%int2 == 0)
-    {
-    questionList.push(question)
-    answer = int1 / int2
-    correctAnswerList.push(answer)
-    i++
+    if (i < 15) {
+      num1 = Math.floor(Math.random() * 10)
+      num2 = Math.floor(Math.random() * 10)
     }
+    else if (i < 25) {
+      num1 = Math.floor(Math.random() * 100)
+      num2 = Math.floor(Math.random() * 10)
+    }
+    else if (questionType == "Multiplication") {
+      num1 = Math.floor(Math.random() * 100)
+      num2 = Math.floor(Math.random() * 10)
+    }
+    else  {
+      num1 = Math.floor(Math.random() * 100)
+      num2 = Math.floor(Math.random() * 100)
+    }
+
+    switch (questionType) {
+      case "Addition" :
+        question = num1 + ' + ' + num2
+        answer = num1 + num2
+        break
+
+      case "Subtraction" :
+        question = num1 + ' - ' + num2
+        answer = num1 - num2
+        break
+
+      case "AdditionWithOneDicimal" :
+        min = 0.1
+        max = 99.9
+        random1 = Math.random() * (max - min) + min
+        num1 = random1.toFixed(1)
+        random2 = Math.random() * (max - min) + min
+        num2 = random2.toFixed(1)
+
+        question = num1 + ' + ' + num2
+        preAnswer = parseFloat(num1) + parseFloat(num2)
+        answer = preAnswer.toFixed(1)
+        break
+
+      case "SubtractionWithOneDicimal" :
+        min = 0.1
+        max = 99.9
+        random1 = Math.random() * (max - min) + min
+        num1 = random1.toFixed(1)
+        random2 = Math.random() * (max - min) + min
+        num2 = random2.toFixed(1)
+
+        question = num1 + ' - ' + num2
+        preAnswer = parseFloat(num1) - parseFloat(num2)
+        answer = preAnswer.toFixed(1)
+        break
+        
+
+      case "AdditionWithTwoDicimal" :
+        min = 0.1
+        max = 99.9
+        random1 = Math.random() * (max - min) + min
+         num1 = random1.toFixed(2)
+        random2 = Math.random() * (max - min) + min
+        num2 = random2.toFixed(2)
+  
+        question = num1 + ' + ' + num2
+        preAnswer = parseFloat(num1) + parseFloat(num2)
+        answer = preAnswer.toFixed(2)
+        break
+
+      case "SubtractionWithTwoDicimal" :
+        min = 0.1
+        max = 99.9
+          random1 = Math.random() * (max - min) + min
+         num1 = random1.toFixed(2)
+        random2 = Math.random() * (max - min) + min
+        num2 = random2.toFixed(2)
+    
+        question = num1 + ' - ' + num2
+        preAnswer = parseFloat(num1) - parseFloat(num2)
+        answer = preAnswer.toFixed(2)
+        break
+        
+      case "Multiplication" :
+        question = num1 + ' × ' + num2
+        answer = num1 * num2
+        break
+
+      case "Division" :
+        while (num2 === 0 || num1 % num2 !== 0) {
+          num1 = Math.floor(Math.random() * 100);
+          num2 = Math.floor(Math.random() * 10) + 1;
+        }
+        question = num1 + ' ÷ ' + num2
+        answer = num1 / num2
+        break
+
+      default:
+        console.error("Unsupported question type: " + questionType);
+        continue;
+    }
+    questionList.push(question)
+    answerList.push(answer)
   }
 }
-// TEST
-division()
-for (let i = 0; i < questionList.length; i++)
-{
-  console.log('Question' + (i+1) + ': ' + questionList[i])
-  console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-}
 
-// Level9は削除する
-// function multiplcationAndDivisionOfFractions()
-// {
-//   for (let i = 0; i < 30; i++)
-//   {
-//     randomNumber()
-//     if (i < 16)
-//     {
-//       question = int
-//     }
+// Test
+// questionType = "Addition"
+// console.log("Addition")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
 //   }
-// }
 
-function linearEquation()
-{
-  for (let i = 0; i < 30; )
-  {
-    randomNumber()
-    if (i < 11)
-    {
-      question = int1 + 'x' + ' + ' + int2 + ' = 0'
-      answer = int1/-int2
-    }
-    else if (i >= 11 && i < 21)
-    {
-      question = int1 + 'x' + ' + ' + int2 + ' = 2'
-      answer = int1/(2-int2)
-    }
-    else if (i >= 21 && i < 31)
-    {
-      question = int1 + 'x' + ' - ' + int2 + ' = 0'
-      answer = int1/-int2
-    }
-
-    if (answer % 0)
-    {
-      questionList.push(question)
-      correctAnswerList.push(answer)
-      i++
-    }
+// questionType = "Subtraction"
+// console.log("Subtraction")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+// questionType = "AdditionWithOneDicimal"
+// console.log("AdditionWithOneDicimal")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+// questionType = "SubtractionWithOneDicimal"
+// console.log("SubtractionWithOneDicimal")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+// questionType = "AdditionWithTwoDicimal"
+// console.log("AdditionWithTwoDicimal")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+// questionType = "SubtractionWithTwoDicimal"
+// console.log("SubtractionWithTwoDicimal")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+questionType = "Multiplication"
+console.log("Multiplication")
+CreateProblems(questionType)
+  // test
+  for (i = 1; i < questionList.length; i++) {
+    console.log(i + " : " + questionList[i])
+    console.log(i + " : " + answerList[i])
   }
-}
-// TEST
-linearEquation()
-for (let i = 0; i < questionList.length; i++)
-{
-  console.log('Question' + (i+1) + ': ' + questionList[i])
-  console.log('Answer' + (i+1) + ': ' + correctAnswerList[i])
-}
+questionType = "Division"
+console.log("Division")
+CreateProblems(questionType)
+  // test
+  for (i = 1; i < questionList.length; i++) {
+    console.log(i + " : " + questionList[i])
+    console.log(i + " : " + answerList[i])
+  }
