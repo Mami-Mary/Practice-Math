@@ -64,19 +64,27 @@
         $title.setAttribute('id', selected)
         $title.innerHTML = 'You are selected ' + selected
         console.log($title)
-        const $comment = document.createElement('div')
-        $comment.innerHTML = `
+        const $comment1 = document.createElement('div')
+        $comment1.innerHTML = `
         <p>There are 30 questions. <br>You need to answer each question in 30 seconds, otherwise it will be time over.</P>
+        `
+        const $comment2 =document.createElement('div')
+        $comment2.setAttribute('id', 'message')
+        $comment2.innerHTML = `
         <h1>Good Luck!</h1>
         <button id="start">Start</button>
         `
         $content.append($title)
-        $content.append($comment)
+        $content.append($comment1)
+        $content.append($comment2)
         $showLevel.appendChild($content)
       </script>
     </section>
 
     <section id="questions">
+    </section>
+
+    <section id="result">
     </section>
   </main>
 

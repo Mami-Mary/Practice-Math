@@ -130,15 +130,48 @@ function displayQuestions(index, item) {
   $item.innerHTML = `
   <h1>Question ${index}</h1>
   <h2>${item}</h2>
-  <lavel>Answer</label>
-  <input>
-  <button type="submit">Check!</button>
+  <form id="form" method="get">
+  <lavel>Answer</lavel>
+  <input id="userInput">
+  <button id="check">Check!</button>
+  <button id="answer">See Answer</button>
+  </form>
   `
   $questions.appendChild($item)
 }
 
+function correctAnswer() {
+  const $item = document.createElement('div')
+  $item.classList.add('correct')
+  $item.innerHTML = `
+  <h1>Great!</h1>
+  <h2>Your answer is correct</h2>
+  <button id="next">Next</button>
+  `
+  $questions.appendChild($item)
+}
 
+function wrongAnswer(answerList) {
+  const $item = document.createElement('div')
+  $item.classList.add('wrong')
+  $item.innerHTML = `
+  <h1>Ooh...</h1>
+  <h2>Your answer is wrong</h2>
+  <p>Correct answer is ${answerList}</p>
+  <button id="next">Next</button>
+  `
+  $questions.appendChild($item)
+}
 
+function totalScore() {
+  const $item = document.createElement('div')
+  $item.classList.add('total')
+  $item.innerHTML = `
+  <h1>Your Score is...</h1>
+  <p>その合計を表示するコードを書く</p>
+  `
+  $result.appendChild($item)
+}
 
 
 

@@ -1,5 +1,6 @@
 const $levels = document.querySelectorAll('#levels button')
 const $questions = document.getElementById('questions')
+const $result = document.getElementById('result')
 console.log($levels)
 
 for (const el of $levels) {
@@ -55,15 +56,43 @@ window.addEventListener('load', function() {
       CreateProblems(questionType)
       break
   }
-  for (i = 1; i < questionList.length; i++) {
-    console.log("Question " + i + " : " + questionList[i])
-    console.log("Answer " + i + " : " + answerList[i])
+  // for (i = 1; i < questionList.length; i++) {
+  //   console.log("Question " + i + " : " + questionList[i])
+  //   console.log("Answer " + i + " : " + answerList[i])
+  // }
+})
+
+const $start = document.getElementById('start')
+const $check = document.getElementById('check')
+const $userInput = document.getElementById('userInput')
+const $form = document.getElementById('form')
+let questionIndex = 1
+$start.addEventListener('click', function(e) {
+  e.preventDefault()
+  const $message = document.getElementById('message')
+  $message.style.display = 'none'
+  displayQuestions(questionIndex, questionList[questionIndex])
+})
+
+$form.addEventListener('submit', function(e) {
+  e.preventDefault()
+  const input = $userInput.value
+  console.log(input)
+  if (input == answerList[questionIndex]) {
+    correctAnswer()
+    questionIndex++
+  }
+  else {
+    wrongAnswer()
+    questionIndex++
   }
 
-  
-
-  for (i = 1; i < questionList.length; i++) {
-    displayQuestions(i, questionList[i])
+  if (questionIndex < questionList.length) {
+    displayQuestions(questionIndex, questionList[questionIndex])
+  }
+  else {
+    console.log('complete all questions')
+    totalScore()
   }
 })
 
