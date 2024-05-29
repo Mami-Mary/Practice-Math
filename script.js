@@ -119,6 +119,46 @@ function CreateProblems(questionType) {
   }
 }
 
+function getLevel(param) {
+  const urlParams = new URLSearchParams(window.location.search)
+  return urlParams.get(param)
+}
+
+function displayQuestions(index, item) {
+  const $item = document.createElement('div')
+  $item.classList.add('item')
+  $item.innerHTML = `
+  <h1>Question ${index}</h1>
+  <h2>${item}</h2>
+  <lavel>Answer</label>
+  <input>
+  <button type="submit">Check!</button>
+  `
+  $questions.appendChild($item)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Test
 // questionType = "Addition"
 // console.log("Addition")
@@ -169,19 +209,20 @@ function CreateProblems(questionType) {
 //     console.log(i + " : " + questionList[i])
 //     console.log(i + " : " + answerList[i])
 //   }
-questionType = "Multiplication"
-console.log("Multiplication")
-CreateProblems(questionType)
-  // test
-  for (i = 1; i < questionList.length; i++) {
-    console.log(i + " : " + questionList[i])
-    console.log(i + " : " + answerList[i])
-  }
-questionType = "Division"
-console.log("Division")
-CreateProblems(questionType)
-  // test
-  for (i = 1; i < questionList.length; i++) {
-    console.log(i + " : " + questionList[i])
-    console.log(i + " : " + answerList[i])
-  }
+// questionType = "Multiplication"
+// console.log("Multiplication")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+// questionType = "Division"
+// console.log("Division")
+// CreateProblems(questionType)
+//   // test
+//   for (i = 1; i < questionList.length; i++) {
+//     console.log(i + " : " + questionList[i])
+//     console.log(i + " : " + answerList[i])
+//   }
+

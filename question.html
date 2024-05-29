@@ -50,76 +50,33 @@
   </header>
   
   <main>
-    <section class="explain">
-      <p>Practice basic math skill step-by-step.</p>
-      <p>There will be a total of 30 questions. If you don't know the answer, you can check the correct answer.</p>
+    <section class="explain" id="showLevel">
+      <!-- <h2>You are selected</h2> -->
+      <script>
+        const $showLevel = document.getElementById('showLevel')
+        function getLevel(param) {
+          const urlParams = new URLSearchParams(window.location.search)
+          return urlParams.get(param)
+        }
+        const selected = getLevel('level')
+        const $content = document.createElement('div')
+        const $title = document.createElement('h2')
+        $title.setAttribute('id', selected)
+        $title.innerHTML = 'You are selected ' + selected
+        console.log($title)
+        const $comment = document.createElement('div')
+        $comment.innerHTML = `
+        <p>There are 30 questions. <br>You need to answer each question in 30 seconds, otherwise it will be time over.</P>
+        <h1>Good Luck!</h1>
+        <button id="start">Start</button>
+        `
+        $content.append($title)
+        $content.append($comment)
+        $showLevel.appendChild($content)
+      </script>
     </section>
 
-    <section id="levels">
-      <button id="level1">
-        <h3>Level 1</h3>
-        <p>Addition</p>
-      </button>
-      <!-- <div>
-        <h3>Level 1</h3>
-        <p>Addition</p>
-      </div> -->
-      <button id="level2">
-        <h3>Level 2</h3>
-        <p>Subtraction</p>
-      </button>
-      <!-- <div>
-        <h3>Level 2</h3>
-        <p>Subtraction</p>
-      </div> -->
-      <button id="level3">
-        <h3>Level 3</h3>
-        <p>Addition with one dicimal point</p>
-      </button>
-      <!-- <div>
-        <h3>Level 3</h3>
-        <p>Addition with one dicimal point</p>
-      </div> -->
-      <button id="level4">
-        <h3>Level 4</h3>
-        <p>Subtraction with one dicimal point</p>
-      </button>
-      <!-- <div>
-        <h3>Level 4</h3>
-        <p>Subtraction with one dicimal point</p>
-      </div> -->
-      <button id="level5">
-        <h3>Level 5</h3>
-        <p>Addition with two dicimal points</p>
-      </button>
-      <!-- <div>
-        <h3>Level 5</h3>
-        <p>Addition with two dicimal points</p>
-      </div> -->
-      <button id="level6">
-        <h3>Level 6</h3>
-        <p>Subtraction with two dicimal points</p>
-      </button>
-      <!-- <div>
-        <h3>Level 6</h3>
-        <p>Subtraction with two dicimal points</p>
-      </div> -->
-      <button id="level7">
-        <h3>Level 7</h3>
-        <p>Multiplication</p>
-      </button>
-      <!-- <div>
-        <h3>Level 7</h3>
-        <p>Multiplication</p>
-      </div> -->
-      <button id="level8">
-        <h3>Level 8</h3>
-        <p>Division</p>
-      </button>
-      <!-- <div>
-        <h3>Level 8</h3>
-        <p>Division</p>
-      </div> -->
+    <section id="questions">
     </section>
   </main>
 

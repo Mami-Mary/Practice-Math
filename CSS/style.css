@@ -17,9 +17,19 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 3rem;
 }
 
-#levels div {
+#levels button {
+  height: 200px;
+  width: 200px;
+}
+#levels p {
+  font-family: Roboto;
+  font-size: 1rem;
+}
+
+/* #levels div {
   width: 150px;
   height: 150px;
   background-color: #5C8ECB;
@@ -30,7 +40,7 @@
   align-items: center;
   margin: 3rem;
   padding: 3rem;
-}
+} */
 
 /* For ramdom.html */
 
