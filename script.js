@@ -1,16 +1,39 @@
 let question = ''
 let answer = 0
-const questionList = []
-const answerList = []
+// const questionList = []
+// const answerList = []
 let questionType
+let totalScore = 0
+const questions = {}
+let index = 1
+
+// function getLevel(selected) {
+//   const levels = {
+//     'level1': "Addition",
+//     'level2': "Subtraction",
+//     'level3': "AdditionWithOneDicimal",
+//     'level4': "SubtractionWithOneDicimal",
+//     'level5': "AdditionWithTwoDicimal",
+//     'level6': "SubtractionWithTwoDicimal",
+//     'level7': "Multiplication",
+//     'level8': "Division"
+//   }
+//   let questionType
+//   for (const item in levels) {
+//     if (item === selected) {
+//       questionType = levels[selected]
+//       break
+//     }
+//   }
+// }
 
 // create a problems 
 function CreateProblems(questionType) {
-  for (let i = 0; i <= 30; i++) {
+  for (let i = 1; i <= 30; i++) {
     let num1
     let num2
-    let min
-    let max
+    let min = 0.1
+    let max = 99.9
     let random1
     let random2
     let preAnswer
@@ -37,15 +60,13 @@ function CreateProblems(questionType) {
         question = num1 + ' + ' + num2
         answer = num1 + num2
         break
-
       case "Subtraction" :
         question = num1 + ' - ' + num2
         answer = num1 - num2
         break
-
       case "AdditionWithOneDicimal" :
-        min = 0.1
-        max = 99.9
+        // min = 0.1
+        // max = 99.9
         random1 = Math.random() * (max - min) + min
         num1 = random1.toFixed(1)
         random2 = Math.random() * (max - min) + min
@@ -55,10 +76,9 @@ function CreateProblems(questionType) {
         preAnswer = parseFloat(num1) + parseFloat(num2)
         answer = preAnswer.toFixed(1)
         break
-
       case "SubtractionWithOneDicimal" :
-        min = 0.1
-        max = 99.9
+        // min = 0.1
+        // max = 99.9
         random1 = Math.random() * (max - min) + min
         num1 = random1.toFixed(1)
         random2 = Math.random() * (max - min) + min
@@ -68,11 +88,9 @@ function CreateProblems(questionType) {
         preAnswer = parseFloat(num1) - parseFloat(num2)
         answer = preAnswer.toFixed(1)
         break
-        
-
       case "AdditionWithTwoDicimal" :
-        min = 0.1
-        max = 99.9
+        // min = 0.1
+        // max = 99.9
         random1 = Math.random() * (max - min) + min
          num1 = random1.toFixed(2)
         random2 = Math.random() * (max - min) + min
@@ -82,25 +100,22 @@ function CreateProblems(questionType) {
         preAnswer = parseFloat(num1) + parseFloat(num2)
         answer = preAnswer.toFixed(2)
         break
-
       case "SubtractionWithTwoDicimal" :
-        min = 0.1
-        max = 99.9
-          random1 = Math.random() * (max - min) + min
+        // min = 0.1
+        // max = 99.9
+        random1 = Math.random() * (max - min) + min
          num1 = random1.toFixed(2)
         random2 = Math.random() * (max - min) + min
-        num2 = random2.toFixed(2)
-    
+        num2 = random2.toFixed(2)  
+
         question = num1 + ' - ' + num2
         preAnswer = parseFloat(num1) - parseFloat(num2)
         answer = preAnswer.toFixed(2)
-        break
-        
+        break   
       case "Multiplication" :
         question = num1 + ' × ' + num2
         answer = num1 * num2
         break
-
       case "Division" :
         while (num2 === 0 || num1 % num2 !== 0) {
           num1 = Math.floor(Math.random() * 100);
@@ -109,14 +124,16 @@ function CreateProblems(questionType) {
         question = num1 + ' ÷ ' + num2
         answer = num1 / num2
         break
-
       default:
         console.error("Unsupported question type: " + questionType);
         continue;
     }
-    questionList.push(question)
-    answerList.push(answer)
+    questions[index] = [question, answer]
+    index++
+    // questionList.push(question)
+    // answerList.push(answer)
   }
+  // return questions
 }
 
 function getLevel(param) {
@@ -124,20 +141,19 @@ function getLevel(param) {
   return urlParams.get(param)
 }
 
-function displayQuestions(index, item) {
+function displayQuestions(index) {
   const $item = document.createElement('div')
   $item.classList.add('item')
   $item.innerHTML = `
   <h1>Question ${index}</h1>
-  <h2>${item}</h2>
-  <form id="form" method="get">
-  <lavel>Answer</lavel>
-  <input id="userInput">
-  <button id="check">Check!</button>
-  <button id="answer">See Answer</button>
-  </form>
+  <h2>${questions[index][0]}</h2>
   `
-  $questions.appendChild($item)
+  const $form = document.getElementById('form')
+  $showQuestion.innerHTML = ``
+  const $input = $form.querySelector('input')
+  $input.value = ``
+  $showQuestion.appendChild($item)
+  $form.style.display = 'block'
 }
 
 function correctAnswer() {
@@ -146,116 +162,50 @@ function correctAnswer() {
   $item.innerHTML = `
   <h1>Great!</h1>
   <h2>Your answer is correct</h2>
-  <button id="next">Next</button>
   `
-  $questions.appendChild($item)
+  $showQuestion.innerHTML = ``
+  $showQuestion.appendChild($item)
+  $form.style.display ='none'
+  $next.style.display = 'block'
 }
 
-function wrongAnswer(answerList) {
+function wrongAnswer(item) {
   const $item = document.createElement('div')
   $item.classList.add('wrong')
   $item.innerHTML = `
   <h1>Ooh...</h1>
   <h2>Your answer is wrong</h2>
-  <p>Correct answer is ${answerList}</p>
-  <button id="next">Next</button>
+  <p>Correct answer is ${item}</p>
   `
-  $questions.appendChild($item)
+  $showQuestion.innerHTML = ``
+  $showQuestion.appendChild($item)
+  $form.style.display ='none'
+  $next.style.display = 'block'
 }
 
-function totalScore() {
+function checkAnswer(item) {
+  const $item = document.createElement('div')
+  $item.classList.add('wrong')
+  $item.innerHTML = `
+  <h1>Ooh...</h1>
+  <h2>Answer is</h2>
+  <p>${questions[questionIndex][0]} = <b>${questions[questionIndex][1]}</b></p>
+  `
+  $showQuestion.innerHTML = ``
+  $showQuestion.appendChild($item)
+  $form.style.display ='none'
+  $next.style.display = 'block'
+}
+
+function getTotalScore() {
   const $item = document.createElement('div')
   $item.classList.add('total')
   $item.innerHTML = `
-  <h1>Your Score is...</h1>
-  <p>その合計を表示するコードを書く</p>
+  <h1>Well Done!!</h1>
+  <h2>Your Score is...</h2>
+  <h1><b>${totalScore}</b>/30</h1>
+  <a href="level.html">Click Here to Back</a>
   `
+  $showQuestion.innerHTML = ``
   $result.appendChild($item)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Test
-// questionType = "Addition"
-// console.log("Addition")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-
-// questionType = "Subtraction"
-// console.log("Subtraction")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-// questionType = "AdditionWithOneDicimal"
-// console.log("AdditionWithOneDicimal")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-// questionType = "SubtractionWithOneDicimal"
-// console.log("SubtractionWithOneDicimal")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-// questionType = "AdditionWithTwoDicimal"
-// console.log("AdditionWithTwoDicimal")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-// questionType = "SubtractionWithTwoDicimal"
-// console.log("SubtractionWithTwoDicimal")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-// questionType = "Multiplication"
-// console.log("Multiplication")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-// questionType = "Division"
-// console.log("Division")
-// CreateProblems(questionType)
-//   // test
-//   for (i = 1; i < questionList.length; i++) {
-//     console.log(i + " : " + questionList[i])
-//     console.log(i + " : " + answerList[i])
-//   }
-

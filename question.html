@@ -51,7 +51,6 @@
   
   <main>
     <section class="explain" id="showLevel">
-      <!-- <h2>You are selected</h2> -->
       <script>
         const $showLevel = document.getElementById('showLevel')
         function getLevel(param) {
@@ -62,7 +61,7 @@
         const $content = document.createElement('div')
         const $title = document.createElement('h2')
         $title.setAttribute('id', selected)
-        $title.innerHTML = 'You are selected ' + selected
+        $title.innerHTML = 'You selected ' + selected
         console.log($title)
         const $comment1 = document.createElement('div')
         $comment1.innerHTML = `
@@ -82,6 +81,15 @@
     </section>
 
     <section id="questions">
+      <div id="showQuestion"></div>
+      <form id="form" method="get">
+        <lavel>Answer</lavel>
+        <input id="userInput">
+        <button id="check">Check!</button>
+        <button id="answer">See Answer</button>
+      </form>
+
+      <button id="next">Next</button>
     </section>
 
     <section id="result">

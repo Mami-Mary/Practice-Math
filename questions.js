@@ -1,7 +1,9 @@
 const $levels = document.querySelectorAll('#levels button')
 const $questions = document.getElementById('questions')
+const $showQuestion = document.getElementById('showQuestion')
 const $result = document.getElementById('result')
 console.log($levels)
+const $next = document.getElementById('next')
 
 for (const el of $levels) {
   el.addEventListener('click', function(e) {
@@ -15,156 +17,82 @@ for (const el of $levels) {
 window.addEventListener('load', function() {
   console.log(selected)
   console.log($questions)
-  switch (selected) {
-    case "level1" :
-      questionType = "Addition"
-      CreateProblems(questionType)
-      break
 
-    case "level2" :
-      questionType = "Subtraction"
-      CreateProblems(questionType)
-      break
-
-    case "level3" :
-      questionType = "AdditionWithOneDicimal"
-      CreateProblems(questionType)
-      break
-
-    case "level4" :
-      questionType ="SubtractionWithOneDicimal"
-      CreateProblems(questionType)
-      break
-
-    case "level5" :
-      questionType = "AdditionWithTwoDicimal"
-      CreateProblems(questionType)
-      break
-
-    case "level6" :
-      questionType ="SubtractionWithTwoDicimal"
-      CreateProblems(questionType)
-      break
-
-    case "level7" :
-      questionType ="Multiplication"
-      CreateProblems(questionType)
-      break
-
-    case "level8" :
-      questionType ="Division"
-      CreateProblems(questionType)
-      break
+  const levels = {
+    'level1': "Addition",
+    'level2': "Subtraction",
+    'level3': "AdditionWithOneDicimal",
+    'level4': "SubtractionWithOneDicimal",
+    'level5': "AdditionWithTwoDicimal",
+    'level6': "SubtractionWithTwoDicimal",
+    'level7': "Multiplication",
+    'level8': "Division",
+    'random': "Random"
   }
-  // for (i = 1; i < questionList.length; i++) {
-  //   console.log("Question " + i + " : " + questionList[i])
-  //   console.log("Answer " + i + " : " + answerList[i])
-  // }
+  for (const item in levels) {
+    if (item == selected) {
+      questionType = levels[item]
+      break
+    }
+  }
+  CreateProblems(questionType)
+
+  for (i = 1; i <= 30; i++) {
+    console.log("Question " + i + " : " + questions[i][0])
+    console.log("Answer " + (i) + " : " + questions[i][1])
+  }
 })
 
 const $start = document.getElementById('start')
 const $check = document.getElementById('check')
+const $answer = document.getElementById('answer')
 const $userInput = document.getElementById('userInput')
 const $form = document.getElementById('form')
 let questionIndex = 1
+let answerIndex = 0
+
 $start.addEventListener('click', function(e) {
   e.preventDefault()
   const $message = document.getElementById('message')
   $message.style.display = 'none'
-  displayQuestions(questionIndex, questionList[questionIndex])
+  // displayQuestions(questionIndex, questionList[answerIndex])
+  displayQuestions(questionIndex)
 })
 
-$form.addEventListener('submit', function(e) {
+$check.addEventListener('click', function(e) {
   e.preventDefault()
   const input = $userInput.value
   console.log(input)
-  if (input == answerList[questionIndex]) {
+  if (input == questions[questionIndex][1]) {
     correctAnswer()
-    questionIndex++
+    totalScore++
   }
   else {
-    wrongAnswer()
-    questionIndex++
+    wrongAnswer(questions[questionIndex][1])
   }
+  questionIndex++
+  // getAnswer++
+  answerIndex++
+  console.log('questionIndex:' + questionIndex)
+  console.log('getanswer: ' + answerIndex)
+})
 
-  if (questionIndex < questionList.length) {
-    displayQuestions(questionIndex, questionList[questionIndex])
+$answer.addEventListener('click', function(e) {
+  e.preventDefault()
+  checkAnswer(questions[questionIndex][1])
+  questionIndex++
+  answerIndex++
+  // getAnswer++
+})
+
+$next.addEventListener('click', function(e) {
+  e.preventDefault()
+  if (questionIndex <= 30) {
+    displayQuestions(questionIndex)
   }
   else {
     console.log('complete all questions')
-    totalScore()
+    getTotalScore()
   }
+  $next.style.display = 'none'
 })
-
-
-    // document.addEventListener('DOMContentLoaded', () => {
-    //   const level = getLevel('level')
-    //   const $selectedLevel = document.getElementById('selected-level')
-    //   console.log("Selected level: ", $selectedLevel)
-    //   const $title = document.createElement('h2')
-    //   $title.textContent = level
-    //   $showLevel.appendChild($title)
-
-    //   switch (level) {
-    //     case "level1" :
-    //       questionType = "Addition"
-    //       CreateProblems(questionType)
-          
-    //       break
-  
-    //     case "level2" :
-    //       questionType = "Subtraction"
-    //       CreateProblems(questionType)
-    //       break
-  
-    //     case "level3" :
-    //       questionType = "AdditionWithOneDicimal"
-    //       CreateProblems(questionType)
-    //       break
-  
-    //     case "level4" :
-    //       questionType ="SubtractionWithOneDicimal"
-    //       CreateProblems(questionType)
-    //       break
-  
-    //     case "level5" :
-    //       questionType = "AdditionWithTwoDicimal"
-    //       CreateProblems(questionType)
-    //       break
-  
-    //     case "level6" :
-    //       questionType ="SubtractionWithTwoDicimal"
-    //       CreateProblems(questionType)
-    //       break
-  
-    //     case "level7" :
-    //       questionType ="Multiplication"
-    //       CreateProblems(questionType)
-    //       break
-  
-    //     case "level8" :
-    //       questionType ="Division"
-    //       CreateProblems(questionType)
-    //       break
-    //   }
-    //   for (i = 1; i < questionList.length; i++) {
-    //     console.log("Question " + i + " : " + questionList[i])
-    //     console.log("Answer " + i + " : " + answerList[i])
-    //   }
-
-    // })
-
-
-// function getLevel(param) {
-//   const urlParams = new URLSearchParams(window.location.search)
-//   return urlParams.get(param)
-// }
-
-
-// window.addEventListener('load', function() {
-//   const level = getLevel('level')
-//   const $selectedLevel = document.getElementById('selected-level')
-// })
-
-
-

@@ -44,9 +44,6 @@ nav li{
   display: inline-block;
 }
 
-/* ul {
-  margin: 0%;
-} */
 li {
   list-style: none;
   margin: 0px 15px 0px 15px;
@@ -63,6 +60,13 @@ header a:hover {
 
 main {
   padding: 30px;
+}
+
+#form {
+  display: none;
+}
+#next {
+  display: none;
 }
 
 button {
