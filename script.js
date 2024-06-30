@@ -1,35 +1,12 @@
 let question = ''
 let answer = 0
-// const questionList = []
-// const answerList = []
 let questionType
 let totalScore = 0
 const questions = {}
-let index = 1
-
-// function getLevel(selected) {
-//   const levels = {
-//     'level1': "Addition",
-//     'level2': "Subtraction",
-//     'level3': "AdditionWithOneDicimal",
-//     'level4': "SubtractionWithOneDicimal",
-//     'level5': "AdditionWithTwoDicimal",
-//     'level6': "SubtractionWithTwoDicimal",
-//     'level7': "Multiplication",
-//     'level8': "Division"
-//   }
-//   let questionType
-//   for (const item in levels) {
-//     if (item === selected) {
-//       questionType = levels[selected]
-//       break
-//     }
-//   }
-// }
+// let index = 1
 
 // create a problems 
-function CreateProblems(questionType) {
-  for (let i = 1; i <= 30; i++) {
+function CreateProblems(questionType, i) {
     let num1
     let num2
     let min = 0.1
@@ -65,8 +42,6 @@ function CreateProblems(questionType) {
         answer = num1 - num2
         break
       case "AdditionWithOneDicimal" :
-        // min = 0.1
-        // max = 99.9
         random1 = Math.random() * (max - min) + min
         num1 = random1.toFixed(1)
         random2 = Math.random() * (max - min) + min
@@ -77,8 +52,6 @@ function CreateProblems(questionType) {
         answer = preAnswer.toFixed(1)
         break
       case "SubtractionWithOneDicimal" :
-        // min = 0.1
-        // max = 99.9
         random1 = Math.random() * (max - min) + min
         num1 = random1.toFixed(1)
         random2 = Math.random() * (max - min) + min
@@ -89,8 +62,6 @@ function CreateProblems(questionType) {
         answer = preAnswer.toFixed(1)
         break
       case "AdditionWithTwoDicimal" :
-        // min = 0.1
-        // max = 99.9
         random1 = Math.random() * (max - min) + min
          num1 = random1.toFixed(2)
         random2 = Math.random() * (max - min) + min
@@ -101,8 +72,6 @@ function CreateProblems(questionType) {
         answer = preAnswer.toFixed(2)
         break
       case "SubtractionWithTwoDicimal" :
-        // min = 0.1
-        // max = 99.9
         random1 = Math.random() * (max - min) + min
          num1 = random1.toFixed(2)
         random2 = Math.random() * (max - min) + min
@@ -124,16 +93,28 @@ function CreateProblems(questionType) {
         question = num1 + ' ÷ ' + num2
         answer = num1 / num2
         break
-      default:
-        console.error("Unsupported question type: " + questionType);
-        continue;
     }
-    questions[index] = [question, answer]
-    index++
-    // questionList.push(question)
-    // answerList.push(answer)
+    questions[i] = [question, answer]
+}
+
+function CreateRandomProblems(i) {
+  const levelIndex = {
+    "Addition": [3, 20, 25, 29],
+    "Subtraction": [1, 16, 24],
+    "AdditionWithOneDicimal": [6, 11, 17, 22],
+    "SubtractionWithOneDicimal": [7, 10, 23, 28],
+    "AdditionWithTwoDicimal": [2,13, 14, 30],
+    "SubtractionWithTwoDicimal": [8, 15, 19, 26],
+    "Multiplication": [4, 18, 21],
+    "Division": [5, 9, 12,27]
   }
-  // return questions
+    for (const key in levelIndex) {
+      if (levelIndex[key].includes(i)) {
+        questionType = key
+        CreateProblems(questionType, i)
+        break
+      }
+    }
 }
 
 function getLevel(param) {
@@ -204,7 +185,7 @@ function getTotalScore() {
   <h1>Well Done!!</h1>
   <h2>Your Score is...</h2>
   <h1><b>${totalScore}</b>/30</h1>
-  <a href="level.html">Click Here to Back</a>
+  <a href="index.html">Back to The Top Page</a>
   `
   $showQuestion.innerHTML = ``
   $result.appendChild($item)

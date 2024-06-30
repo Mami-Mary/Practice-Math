@@ -120,6 +120,18 @@
         <h3>Level 8</h3>
         <p>Division</p>
       </div> -->
+
+      <script>
+        const $levels = document.querySelectorAll('#levels button')
+        for (const el of $levels) {
+          el.addEventListener('click', function(e) {
+            const level = e.currentTarget.id
+            console.log("Selected level: ", level)
+            const url = `question.html?level=${level}`
+            window.location.href = url
+          })
+        }
+      </script>
     </section>
   </main>
 

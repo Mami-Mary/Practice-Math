@@ -1,23 +1,16 @@
-const $levels = document.querySelectorAll('#levels button')
 const $questions = document.getElementById('questions')
 const $showQuestion = document.getElementById('showQuestion')
 const $result = document.getElementById('result')
-console.log($levels)
+const $start = document.getElementById('start')
+const $check = document.getElementById('check')
+const $answer = document.getElementById('answer')
+const $userInput = document.getElementById('userInput')
 const $next = document.getElementById('next')
-
-for (const el of $levels) {
-  el.addEventListener('click', function(e) {
-    const level = e.currentTarget.id
-    console.log("Selected level: ", level)
-    const url = `question.html?level=${level}`
-    window.location.href = url
-  })
-}
+const $form = document.getElementById('form')
 
 window.addEventListener('load', function() {
   console.log(selected)
   console.log($questions)
-
   const levels = {
     'level1': "Addition",
     'level2': "Subtraction",
@@ -32,10 +25,21 @@ window.addEventListener('load', function() {
   for (const item in levels) {
     if (item == selected) {
       questionType = levels[item]
+      console.log("questionType: " + questionType)
       break
     }
+    else {console.log('Not found')}
   }
-  CreateProblems(questionType)
+  if (questionType == "Random") {
+    for (let i = 1; i <= 30; i++) {
+      CreateRandomProblems(i)
+    }
+  }
+  else {
+    for (let i = 1; i <= 30; i++) {
+      CreateProblems(questionType, i)
+    }
+  }
 
   for (i = 1; i <= 30; i++) {
     console.log("Question " + i + " : " + questions[i][0])
@@ -43,11 +47,6 @@ window.addEventListener('load', function() {
   }
 })
 
-const $start = document.getElementById('start')
-const $check = document.getElementById('check')
-const $answer = document.getElementById('answer')
-const $userInput = document.getElementById('userInput')
-const $form = document.getElementById('form')
 let questionIndex = 1
 let answerIndex = 0
 
@@ -55,7 +54,6 @@ $start.addEventListener('click', function(e) {
   e.preventDefault()
   const $message = document.getElementById('message')
   $message.style.display = 'none'
-  // displayQuestions(questionIndex, questionList[answerIndex])
   displayQuestions(questionIndex)
 })
 
@@ -71,7 +69,6 @@ $check.addEventListener('click', function(e) {
     wrongAnswer(questions[questionIndex][1])
   }
   questionIndex++
-  // getAnswer++
   answerIndex++
   console.log('questionIndex:' + questionIndex)
   console.log('getanswer: ' + answerIndex)
@@ -82,7 +79,6 @@ $answer.addEventListener('click', function(e) {
   checkAnswer(questions[questionIndex][1])
   questionIndex++
   answerIndex++
-  // getAnswer++
 })
 
 $next.addEventListener('click', function(e) {
@@ -96,3 +92,4 @@ $next.addEventListener('click', function(e) {
   }
   $next.style.display = 'none'
 })
+

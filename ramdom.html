@@ -53,8 +53,18 @@
       <p>There will be a total of 30 questions. If you don't know the answer, you can check the correct answer.</p>
     </section>
 
-    <section id="ramdom">
-
+    <section id="random">
+      <button id="okay">Got it</button>
+       <!-- <a href="question.html?level=random">Got it</a> -->
+        <script>
+          const $okay = document.getElementById('okay')
+          $okay.addEventListener('click', function(e) {
+            const level = 'random'
+            console.log("Selected level: ", level)
+            const url = `question.html?level=${level}`
+            window.location.href = url
+          })
+        </script>
     </section>
 
   </main>
