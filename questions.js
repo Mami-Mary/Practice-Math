@@ -7,11 +7,13 @@ const $answer = document.getElementById('answer')
 const $userInput = document.getElementById('userInput')
 const $next = document.getElementById('next')
 const $form = document.getElementById('form')
+let levels
+let $test
 
 window.addEventListener('load', function() {
-  console.log(selected)
-  console.log($questions)
-  const levels = {
+  console.log("selected: " + selected)
+  // console.log($questions)
+  levels = {
     'level1': "Addition",
     'level2': "Subtraction",
     'level3': "AdditionWithOneDicimal",
@@ -20,7 +22,9 @@ window.addEventListener('load', function() {
     'level6': "SubtractionWithTwoDicimal",
     'level7': "Multiplication",
     'level8': "Division",
-    'random': "Random"
+    'random': "Random",
+    'testLv': "testByLevel",
+    'testRan': "testByRandom"
   }
   for (const item in levels) {
     if (item == selected) {
@@ -28,12 +32,16 @@ window.addEventListener('load', function() {
       console.log("questionType: " + questionType)
       break
     }
-    else {console.log('Not found')}
+    else {console.log('questionType not found')}
   }
   if (questionType == "Random") {
     for (let i = 1; i <= 30; i++) {
       CreateRandomProblems(i)
     }
+  }
+  else if (questionType == "testByLevel" || questionType == "testByRandom") {
+    console.log("test is selected")
+    CreateTestProblems(questionType)
   }
   else {
     for (let i = 1; i <= 30; i++) {
@@ -57,12 +65,16 @@ $start.addEventListener('click', function(e) {
   displayQuestions(questionIndex)
 })
 
+let currentGrade
 $check.addEventListener('click', function(e) {
   e.preventDefault()
   const input = $userInput.value
   console.log(input)
   if (input == questions[questionIndex][1]) {
     correctAnswer()
+    if (selected == 'testLv' || selected == 'testRan') {
+      currentGrade = evaluateScore(selected, questionIndex)
+    }
     totalScore++
   }
   else {
@@ -76,7 +88,7 @@ $check.addEventListener('click', function(e) {
 
 $answer.addEventListener('click', function(e) {
   e.preventDefault()
-  checkAnswer(questions[questionIndex][1])
+  checkAnswer(questions[questionIndex])
   questionIndex++
   answerIndex++
 })

@@ -49,7 +49,7 @@
   
   <main>
     <section class="explain">
-      <p>Test your understanding!</p>
+      <h2>Test your understanding!</h2>
       <p>There will be a total of 30 questions and a time limit of up to 1 minute per question. If you pass 1 minute, the test will be the end.</p>
     </section>
 
@@ -58,12 +58,30 @@
 
       <div id="option">
         <div id="testLevel">
-          <button>Test by Level</button>
+          <button id="testLevel">Test by Level</button>
         </div>
-        <div id="testRamdom">
-          <button>Test by Ramdom</button>
+        <div id="testRandom">
+          <button>Test by Random</button>
         </div>
       </div>
+
+      <script>
+        const $testLevel = document.getElementById('testLevel')
+        const $testRandom = document.getElementById('testRandom')
+        $testLevel.addEventListener('click', function(e) {
+          const level = 'testLv'
+          console.log("Selected level: ", level)
+          const url = `question.html?level=${level}`
+          window.location.href = url
+        })
+
+        $testRandom.addEventListener('click', function(e) {
+          const level = 'testRan'
+          console.log("Selected level: ", level)
+          const url = `question.html?level=${level}`
+          window.location.href = url
+        })
+      </script>
     </section>
 
   </main>

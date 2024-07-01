@@ -23,7 +23,7 @@ function CreateProblems(questionType, i) {
       num1 = Math.floor(Math.random() * 100)
       num2 = Math.floor(Math.random() * 10)
     }
-    else if (questionType == "Multiplication") {
+    else if (questionType == "Multiplication" || questionType == "testByLevel" || questionType == "testByRandom") {
       num1 = Math.floor(Math.random() * 100)
       num2 = Math.floor(Math.random() * 10)
     }
@@ -97,17 +97,27 @@ function CreateProblems(questionType, i) {
     questions[i] = [question, answer]
 }
 
+const levelIndex = {
+  "Addition": [3, 20, 25, 29],
+  "Subtraction": [1, 16, 24],
+  "AdditionWithOneDicimal": [6, 11, 17, 22],
+  "SubtractionWithOneDicimal": [7, 10, 23, 28],
+  "AdditionWithTwoDicimal": [2,13, 14, 30],
+  "SubtractionWithTwoDicimal": [8, 15, 19, 26],
+  "Multiplication": [4, 18, 21],
+  "Division": [5, 9, 12,27]
+}
 function CreateRandomProblems(i) {
-  const levelIndex = {
-    "Addition": [3, 20, 25, 29],
-    "Subtraction": [1, 16, 24],
-    "AdditionWithOneDicimal": [6, 11, 17, 22],
-    "SubtractionWithOneDicimal": [7, 10, 23, 28],
-    "AdditionWithTwoDicimal": [2,13, 14, 30],
-    "SubtractionWithTwoDicimal": [8, 15, 19, 26],
-    "Multiplication": [4, 18, 21],
-    "Division": [5, 9, 12,27]
-  }
+  // const levelIndex = {
+  //   "Addition": [3, 20, 25, 29],
+  //   "Subtraction": [1, 16, 24],
+  //   "AdditionWithOneDicimal": [6, 11, 17, 22],
+  //   "SubtractionWithOneDicimal": [7, 10, 23, 28],
+  //   "AdditionWithTwoDicimal": [2,13, 14, 30],
+  //   "SubtractionWithTwoDicimal": [8, 15, 19, 26],
+  //   "Multiplication": [4, 18, 21],
+  //   "Division": [5, 9, 12,27]
+  // }
     for (const key in levelIndex) {
       if (levelIndex[key].includes(i)) {
         questionType = key
@@ -115,6 +125,44 @@ function CreateRandomProblems(i) {
         break
       }
     }
+}
+
+function CreateTestProblems(questionType) {
+  switch (questionType) {
+    case "testByLevel": 
+      for (let i = 1; i <= 30; i++) {
+        if (i >= 1 && i <= 4) {
+          CreateProblems("Addition", i)
+        }
+        if (i >= 5 && i <= 7) {
+          CreateProblems("Subtraction", i)
+        }
+        if (i >= 8 && i <= 11) {
+          CreateProblems("AdditionWithOneDicimal", i)
+        }
+        if (i >= 12 && i <= 15) {
+          CreateProblems("SubtractionWithOneDicimal", i)
+        }
+        if (i >= 16 && i <= 19) {
+          CreateProblems("AdditionWithTwoDicimal", i)
+        }
+        if (i >= 20 && i <= 23) {
+          CreateProblems("SubtractionWithTwoDicimal", i)
+        }
+        if (i >= 24 && i <= 26) {
+          CreateProblems("Multiplication", i)
+        }
+        if (i >= 27 && i <= 30) {
+          CreateProblems("Division", i)
+        }
+      }
+      break
+    case "testByRandom":
+      for (let i = 1; i <= 30; i++) {
+        CreateRandomProblems(i)
+      }
+      break
+  }
 }
 
 function getLevel(param) {
@@ -164,13 +212,13 @@ function wrongAnswer(item) {
   $next.style.display = 'block'
 }
 
-function checkAnswer(item) {
+function checkAnswer(questions) {
   const $item = document.createElement('div')
   $item.classList.add('wrong')
   $item.innerHTML = `
   <h1>Ooh...</h1>
   <h2>Answer is</h2>
-  <p>${questions[questionIndex][0]} = <b>${questions[questionIndex][1]}</b></p>
+  <p>${questions[0]} = <b>${questions[1]}</b></p>
   `
   $showQuestion.innerHTML = ``
   $showQuestion.appendChild($item)
@@ -179,14 +227,102 @@ function checkAnswer(item) {
 }
 
 function getTotalScore() {
+  const finalGrade = currentGrade
+  
   const $item = document.createElement('div')
   $item.classList.add('total')
-  $item.innerHTML = `
-  <h1>Well Done!!</h1>
-  <h2>Your Score is...</h2>
-  <h1><b>${totalScore}</b>/30</h1>
-  <a href="index.html">Back to The Top Page</a>
-  `
+  if (selected == "testLv" || selected == "testRan") {
+    $item.innerHTML = `
+    <h1>Well Done!!</h1>
+    <h2>Your Score is...</h2>
+    <h1><b>${finalGrade}</b>
+    <h1><b>${totalScore}</b>/30</h1>
+    <a href="index.html">Back to The Top Page</a>
+    `
+  }
+  else {
+    $item.innerHTML = `
+    <h1>Well Done!!</h1>
+    <h2>Your Score is...</h2>
+    <h1><b>${totalScore}</b>/30</h1>
+    <a href="index.html">Back to The Top Page</a>
+    `
+  }
   $showQuestion.innerHTML = ``
   $result.appendChild($item)
+}
+
+const scoreLevel = {
+  "Addition": [4,0],
+  "Subtraction": [3,0],
+  "AdditionWithOneDicimal": [4,0],
+  "SubtractionWithOneDicimal": [4,0],
+  "AdditionWithTwoDicimal": [4,0],
+  "SubtractionWithTwoDicimal": [4,0],
+  "Multiplication": [3,0],
+  "Division": [4,0]
+}
+
+function evaluateScore(selected, questionIndex) {
+  let addScore
+  let grade
+  switch (selected) {
+    case "testLv":
+      if (questionIndex >=1 && questionIndex <= 4) {
+        addScore = "Addition"
+      }
+      else if (questionIndex >=5 && questionIndex <= 7) {
+        addScore = "Subtraction"
+      }
+      else if (questionIndex >=8 && questionIndex <= 11) {
+        addScore = "AdditionWithOneDicimal"
+      }
+      else if (questionIndex >=12 && questionIndex <= 15) {
+        addScore = "SubtractionWithOneDicimal"
+      }
+      else if (questionIndex >=16 && questionIndex <= 19) {
+        addScore = "AdditionWithTwoDicimal"
+      }
+      else if (questionIndex >=20 && questionIndex <= 23) {
+        addScore = "SubtractionWithTwoDicimal"
+      }
+      else if (questionIndex >=24 && questionIndex <= 26) {
+        addScore = "Multiplication"
+      }
+      else if (questionIndex >=27 && questionIndex <= 30) {
+        addScore = "Division"
+      }
+      break
+    case "testRan":
+      for (const key in levelIndex) {
+        if (levelIndex[key].includes(questionIndex)) {
+          addScore = key
+          break
+        }
+      }
+      break
+  }
+  scoreLevel[addScore][1] += 1
+
+  let highestScore = []
+  let max = -1
+  for (const key in scoreLevel) {
+    if (scoreLevel[key][0] === scoreLevel[key][1]) {
+      highestScore.push(key)
+    }
+    else {
+      const value = scoreLevel[key][1]
+      if (value > max) {
+        max = value
+        highestScore.push(key)
+      }
+    }
+  }
+  if (highestScore.length > 1) {
+    grade = highestScore[highestScore.length - 1]
+  }
+  else {
+    grade = highestScore[0]
+  }
+  return grade
 }

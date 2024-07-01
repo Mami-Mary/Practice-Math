@@ -34,6 +34,12 @@ h1 {
   margin-bottom: 0%;
 }
 
+h2 {
+  font-family: Ubuntu;
+  font-weight: 700;
+  font-size: 3rem;
+}
+
 h3 {
   font-family: Ubuntu;
   font-weight: 700;
