@@ -1,13 +1,8 @@
+/* mobile-first */
+
 /* For index.html */
 #quickStart {
   margin-top: 50px;
-}
-
-#quickStart > :first-child {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
 }
 
 /* For level.index */
@@ -17,7 +12,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
+  gap: 0.5rem;
 }
 
 #levels button {
@@ -49,13 +44,48 @@
   margin-top: 3rem;
 }
 
-#option {
+/* #option {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
+} */
+
+/* For question.html */
+#form label {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+#form input {
+  width: 25%;
+  height: 3rem;
+  font-size: 2rem;
+}
+#form div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+#next {
+  margin: 2rem auto;
+}
+.wrong p {
+  font-size: 3rem;
+}
+.total a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #5C8ECB;
 }
 
-/* For mistake.html */
-
-/* For log.html */
+/* for tablet */
+@media screen and (min-width: 780px) {
+  /* index.html & test.html */
+  #quickStart .practice, #option {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+}

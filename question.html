@@ -43,8 +43,8 @@
         <li><a href="level.html">Problems by Level</a></li>
         <li><a href="ramdom.html">Problems by Ramdom</a></li>
         <li><a href="test.html">Test</a></li>
-        <li><a href="mistake.html">Retry Mistake Problems</a></li>
-        <li><a href="log.html">History of Attempt</a></li>
+        <!-- <li><a href="mistake.html">Retry Mistake Problems</a></li>
+        <li><a href="log.html">History of Attempt</a></li> -->
       </ul>
     </nav>
   </header>
@@ -65,7 +65,7 @@
         console.log($title)
         const $comment1 = document.createElement('div')
         $comment1.innerHTML = `
-        <p>There are 30 questions. <br>You need to answer each question in 30 seconds, otherwise it will be time over.</P>
+        <p>There are 30 questions.</P>
         `
         const $comment2 =document.createElement('div')
         $comment2.setAttribute('id', 'message')
@@ -83,12 +83,13 @@
     <section id="questions">
       <div id="showQuestion"></div>
       <form id="form" method="get">
-        <lavel>Answer</lavel>
+        <label>Answer</label>
         <input id="userInput">
-        <button id="check">Check!</button>
-        <button id="answer">See Answer</button>
+        <div>
+          <button id="check">Check!</button>
+          <button id="answer">See Answer</button>
+        </div>
       </form>
-
       <button id="next">Next</button>
     </section>
 

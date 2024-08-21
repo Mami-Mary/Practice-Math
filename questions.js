@@ -9,23 +9,36 @@ const $next = document.getElementById('next')
 const $form = document.getElementById('form')
 let levels
 let $test
+levels = {
+  'level1': "Addition",
+  'level2': "Subtraction",
+  'level3': "AdditionWithOneDicimal",
+  'level4': "SubtractionWithOneDicimal",
+  'level5': "AdditionWithTwoDicimal",
+  'level6': "SubtractionWithTwoDicimal",
+  'level7': "Multiplication",
+  'level8': "Division",
+  'random': "Random",
+  'testLv': "testByLevel",
+  'testRan': "testByRandom"
+}
 
 window.addEventListener('load', function() {
   console.log("selected: " + selected)
   // console.log($questions)
-  levels = {
-    'level1': "Addition",
-    'level2': "Subtraction",
-    'level3': "AdditionWithOneDicimal",
-    'level4': "SubtractionWithOneDicimal",
-    'level5': "AdditionWithTwoDicimal",
-    'level6': "SubtractionWithTwoDicimal",
-    'level7': "Multiplication",
-    'level8': "Division",
-    'random': "Random",
-    'testLv': "testByLevel",
-    'testRan': "testByRandom"
-  }
+  // levels = {
+  //   'level1': "Addition",
+  //   'level2': "Subtraction",
+  //   'level3': "AdditionWithOneDicimal",
+  //   'level4': "SubtractionWithOneDicimal",
+  //   'level5': "AdditionWithTwoDicimal",
+  //   'level6': "SubtractionWithTwoDicimal",
+  //   'level7': "Multiplication",
+  //   'level8': "Division",
+  //   'random': "Random",
+  //   'testLv': "testByLevel",
+  //   'testRan': "testByRandom"
+  // }
   for (const item in levels) {
     if (item == selected) {
       questionType = levels[item]

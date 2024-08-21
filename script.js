@@ -202,7 +202,7 @@ function wrongAnswer(item) {
   const $item = document.createElement('div')
   $item.classList.add('wrong')
   $item.innerHTML = `
-  <h1>Ooh...</h1>
+  <h1>Ohh...</h1>
   <h2>Your answer is wrong</h2>
   <p>Correct answer is ${item}</p>
   `
@@ -216,7 +216,7 @@ function checkAnswer(questions) {
   const $item = document.createElement('div')
   $item.classList.add('wrong')
   $item.innerHTML = `
-  <h1>Ooh...</h1>
+  <h1>Ohh...</h1>
   <h2>Answer is</h2>
   <p>${questions[0]} = <b>${questions[1]}</b></p>
   `
@@ -318,11 +318,20 @@ function evaluateScore(selected, questionIndex) {
       }
     }
   }
+  let tempLevel
   if (highestScore.length > 1) {
-    grade = highestScore[highestScore.length - 1]
+    tempLevel = highestScore[highestScore.length - 1]
   }
   else {
-    grade = highestScore[0]
+    tempLevel = highestScore[0]
   }
+  for (const el in levels) {
+    console.log(levels[el])
+    if (levels[el] == tempLevel) {
+      grade = el + " " + levels[el]
+      break
+    }
+  }
+  console.log(grade)
   return grade
 }
