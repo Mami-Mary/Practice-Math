@@ -1,0 +1,56 @@
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2210.31 888.23">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        font-family: KozGoPr6N-Regular-83pv-RKSJ-H, 'Kozuka Gothic Pr6N';
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        fill: #5a85c4;
+      }
+
+      .cls-1, .cls-3 {
+        font-size: 72px;
+      }
+
+      .cls-2, .cls-7 {
+        font-size: 130.42px;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8 {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-4 {
+        font-size: 108.92px;
+      }
+
+      .cls-5 {
+        font-size: 142.27px;
+      }
+
+      .cls-6 {
+        font-size: 105.1px;
+      }
+
+      .cls-8 {
+        font-size: 241.42px;
+      }
+
+      .cls-9 {
+        fill: #5c8ecb;
+      }
+    </style>
+  </defs>
+  <rect class="cls-9" width="2210.31" height="888.23"/>
+  <text class="cls-3" transform="translate(213.55 337.6) rotate(21.31)"><tspan x="0" y="0">X</tspan></text>
+  <text class="cls-7" transform="translate(234.6 549.45) rotate(-13.27) scale(1.23 1)"><tspan x="0" y="0">Y</tspan></text>
+  <text class="cls-6" transform="translate(793.89 383.35) rotate(-18.19) scale(1.41 1)"><tspan x="0" y="0">P</tspan></text>
+  <text class="cls-1" transform="translate(275.79 413.83) rotate(-13.27) scale(1.12 1)"><tspan x="0" y="0">３６５</tspan></text>
+  <text class="cls-5" transform="translate(632.1 533.68) rotate(10.07) scale(1.12 1)"><tspan x="0" y="0">3.1415</tspan></text>
+  <text class="cls-3" transform="translate(361.99 574.19) rotate(21.31)"><tspan x="0" y="0">X</tspan></text>
+  <text class="cls-7" transform="translate(1043.4 445.05) scale(1.23 1)"><tspan x="0" y="0">√</tspan></text>
+  <text class="cls-2" transform="translate(1136.57 457.44) rotate(-2.12) scale(1.23 1)"><tspan x="0" y="0">3/5</tspan></text>
+  <text class="cls-8" transform="translate(1227.37 631.53) rotate(-10.66) scale(1.09 1)"><tspan x="0" y="0">Y=aX+b</tspan></text>
+  <text class="cls-4" transform="translate(1484.83 337.19) scale(1.31 1)"><tspan x="0" y="0">0.000001</tspan></text>
+</svg>
