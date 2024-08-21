@@ -20,11 +20,16 @@ header {
   height: fit-content;
   /* width: fit-content; */
   color: white;
+  /* background-image: url(/Images/header.svg);
+  background-size: cover;
+  background-position: center; */
+  /* background-repeat: no-repeat; */
+  padding: 30px;
+}
+#background-img {
   background-image: url(/Images/header.svg);
   background-size: cover;
   background-position: center;
-  /* background-repeat: no-repeat; */
-  padding: 30px;
 }
 
 svg {
