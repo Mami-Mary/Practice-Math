@@ -80,7 +80,7 @@
 }
 
 /* for tablet */
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 736px) {
   /* index.html & test.html */
   #quickStart .practice, #option {
     display: flex;
