@@ -18,22 +18,22 @@ body {
 
 header {
   height: fit-content;
-  /* width: fit-content; */
+  background-color: #5C8ECB;
   color: white;
-  /* background-image: url(/Images/header.svg);
-  background-size: cover;
-  background-position: center; */
-  /* background-repeat: no-repeat; */
   padding: 30px;
 }
-#background-img {
+/* #background-img {
   background-image: url(/Images/header.svg);
   background-size: cover;
   background-position: center;
-}
+} */
 
 svg {
   width: 10%;
+}
+
+img {
+  width: 100%;
 }
 
 h1 {
@@ -56,6 +56,9 @@ h3 {
   /* margin-top: 0%; */
 }
 
+nav ul {
+  padding-left: 0%;
+}
 nav li{
   display: inline-block;
 }
